@@ -5,15 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace ViewModels
 {
-   public class Product:BaseEntity
+   public class ProductViewModel
     {
-        public Product() : base()
+        public ProductViewModel() : base()
         {
 
         }
-        [Display(Name ="نام کالا")]
+        public int Id { get; set; }
+
+        [Display(Name = "نام کالا")]
         public string Name { get; set; }
 
         [Display(Name = "قیمت")]
@@ -25,5 +27,7 @@ namespace Models
         [Display(Name = "واحد")]
         public int UnitProductId { get; set; }
 
+        [Display(Name = "واحد")]
+        public string UnitProduct { get; set; }
     }
 }

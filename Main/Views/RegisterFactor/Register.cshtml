@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout_fa-IR.cshtml";
+}
+<style>
+    [v-cloak] {
+        display: none;
+    }
+    .green{
+    background-color:#4cd035;
+    color:white
+}
+</style>
+<div id="app" class="container" v-cloak>
+    <div class="row">
+        <div class="col-12 table-responsive">
+            <table class="table table-bordered table-striped table-hover table-sm">
+                <tr>
+                    <td class="green" colspan="7" style="text-align:center;">فاکتور</td>
+                </tr>
+                <tr>
+
+                    <th>نام</th>
+                    <th>قیمت</th>
+                    <th>وزن</th>
+                    <th>واحد</th>
+                    <th>عملیات</th>
+                    <th>تعداد</th>
+                    <th>جمع</th>
+                </tr>
+                <tr v-for="item in listSelectionProduct" v-bind:key="item.id">
+                    <td>{{item.Name}}</td>
+                    <td>{{item.Price}}</td>
+                    <td>{{item.Weight}}</td>
+                    <td>{{item.UnitProduct}}</td>
+                    <td>lll</td>
+                    <td>{{item.count}}</td>
+                    <td>dd</td>
+                    </tr>
+                <tr>
+
+                    <td>
+                        <select v-model="selectedProduct" @@change="onChange($event)" class="browser-default custom-select ">
+                            <option v-bind:value="null">انتخاب کالا</option>
+                            <option v-for="item in listProduct" v-bind:value="item">{{ item.Name}}</option>
+                        </select>
+
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    @*<td>
+                        <button type="button" v-on:click="plus(item)" class="btn btn-primary" style="margin-bottom:3px;" title="اضافه کردن">+</button>
+                        &nbsp;
+                        <button type="button" v-on:click="minus(item)" class="btn btn-danger" style="margin-bottom:3px;" title="کم کردن">-</button>
+                    </td>*@
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="6">جمع کل</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+<script src="~/js/hjFunction.js"></script>
+<script src="~/js/registerfactor/register.js"></script>

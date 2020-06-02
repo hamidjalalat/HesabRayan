@@ -27,7 +27,13 @@
 
                 @Html.HjEditor(model => model.Weight)
 
-                @Html.HjEditor(model => model.UnitProductId)
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.UnitProductId, "واحد", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("UnitProductId", null, htmlAttributes: new { @class = "form-control browser-default custom-select" })
+                        @Html.ValidationMessageFor(model => model.UnitProductId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
 
                 <div class='form-group row'>

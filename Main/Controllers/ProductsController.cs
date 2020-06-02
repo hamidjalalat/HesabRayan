@@ -38,6 +38,7 @@ namespace HJ_Template_MVC.Controllers
         // GET: Products/Create
         public virtual ActionResult Create()
         {
+            ViewBag.UnitProductId = new SelectList(db.UnitProducts, "Id", "Name");
             return View();
         }
 
@@ -67,7 +68,8 @@ namespace HJ_Template_MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product product = MyUnitOfWork.ProductRepository.GetById(id.Value);
-            //Product product = db.Products.Find(id);
+
+            ViewBag.UnitProductId = new SelectList(db.UnitProducts, "Id", "Name", product.UnitProductId);
             if (product == null)
             {
                 return HttpNotFound();
@@ -89,6 +91,7 @@ namespace HJ_Template_MVC.Controllers
             
                 return RedirectToAction("Index");
             }
+            ViewBag.UnitProductId = new SelectList(db.UnitProducts, "Id", "Name", product.UnitProductId);
             return View(product);
         }
 

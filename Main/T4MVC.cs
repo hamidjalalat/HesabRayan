@@ -30,6 +30,7 @@ public static partial class MVC
     public static HJ_Template_MVC.Controllers.AccountController Account = new HJ_Template_MVC.Controllers.T4MVC_AccountController();
     public static HJ_Template_MVC.Controllers.HomeController Home = new HJ_Template_MVC.Controllers.T4MVC_HomeController();
     public static HJ_Template_MVC.Controllers.ProductsController Products = new HJ_Template_MVC.Controllers.T4MVC_ProductsController();
+    public static HJ_Template_MVC.Controllers.RegisterFactorController RegisterFactor = new HJ_Template_MVC.Controllers.T4MVC_RegisterFactorController();
     public static HJ_Template_MVC.Controllers.testUnitProductsController testUnitProducts = new HJ_Template_MVC.Controllers.T4MVC_testUnitProductsController();
     public static HJ_Template_MVC.Controllers.UnitProductController UnitProduct = new HJ_Template_MVC.Controllers.T4MVC_UnitProductController();
     public static HJ_Template_MVC.Controllers.UsersController Users = new HJ_Template_MVC.Controllers.T4MVC_UsersController();
@@ -103,6 +104,10 @@ namespace Links
         public const string UrlPath = "~/scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+        public static readonly string axios_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/axios.min.js") ? Url("axios.min.js") : Url("axios.js");
+        public static readonly string axios_map = Url("axios.map");
+        public static readonly string axios_min_js = Url("axios.min.js");
+        public static readonly string axios_min_map = Url("axios.min.map");
         public static readonly string bootstrap_rtl_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap-rtl.min.js") ? Url("bootstrap-rtl.min.js") : Url("bootstrap-rtl.js");
         public static readonly string bootstrap_rtl_min_js = Url("bootstrap-rtl.min.js");
         public static readonly string bootstrap_bundle_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.bundle.min.js") ? Url("bootstrap.bundle.min.js") : Url("bootstrap.bundle.js");
@@ -128,6 +133,8 @@ namespace Links
         public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.validate.unobtrusive.min.js") ? Url("jquery.validate.unobtrusive.min.js") : Url("jquery.validate.unobtrusive.js");
         public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
         public static readonly string modernizr_2_6_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/modernizr-2.6.2.min.js") ? Url("modernizr-2.6.2.min.js") : Url("modernizr-2.6.2.js");
+        public static readonly string vue_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/vue.min.js") ? Url("vue.min.js") : Url("vue.js");
+        public static readonly string vue_min_js = Url("vue.min.js");
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -177,6 +184,8 @@ namespace Links
         {
             public static class Assets
             {
+                public const string axios_js = "~/scripts/axios.js"; 
+                public const string axios_min_js = "~/scripts/axios.min.js"; 
                 public const string bootstrap_rtl_js = "~/scripts/bootstrap-rtl.js"; 
                 public const string bootstrap_rtl_min_js = "~/scripts/bootstrap-rtl.min.js"; 
                 public const string bootstrap_bundle_js = "~/scripts/bootstrap.bundle.js"; 
@@ -195,6 +204,8 @@ namespace Links
                 public const string jquery_validate_unobtrusive_js = "~/scripts/jquery.validate.unobtrusive.js"; 
                 public const string jquery_validate_unobtrusive_min_js = "~/scripts/jquery.validate.unobtrusive.min.js"; 
                 public const string modernizr_2_6_2_js = "~/scripts/modernizr-2.6.2.js"; 
+                public const string vue_js = "~/scripts/vue.js"; 
+                public const string vue_min_js = "~/scripts/vue.min.js"; 
             }
         }
         public static partial class Content 
