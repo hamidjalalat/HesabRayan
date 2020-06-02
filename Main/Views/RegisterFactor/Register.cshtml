@@ -13,11 +13,25 @@
 }
 </style>
 <div id="app" class="container" v-cloak>
+    <div class="row" style="margin-bottom:10px;margin-top:10px">
+        <div class="col-sm-2">
+            <label>
+                نام مشتری
+            </label>
+        </div>
+        <div class="col-sm-3">
+            <input class="form-control text-box single-line" type="text" name="username" id="username" v-model="customer"  />
+        </div>
+
+
+    </div>
     <div class="row">
+        
         <div class="col-12 table-responsive">
+            
             <table class="table table-bordered table-striped table-hover table-sm">
                 <tr>
-                    <td class="green" colspan="7" style="text-align:center;">فاکتور</td>
+                    <td class="green" colspan="7" style="text-align:center;">ثبت اقلام فاکتور</td>
                 </tr>
                 <tr>
 
@@ -34,9 +48,13 @@
                     <td>{{item.Price}}</td>
                     <td>{{item.Weight}}</td>
                     <td>{{item.UnitProduct}}</td>
-                    <td>lll</td>
+                    <td>
+                        <button type="button" v-on:click="plus(item)" class="btn btn-primary" style="margin-bottom:3px;" title="اضافه کردن">+</button>
+                        &nbsp;
+                        <button type="button" v-on:click="minus(item)" class="btn btn-danger" style="margin-bottom:3px;" title="کم کردن">-</button>
+                    </td>
                     <td>{{item.count}}</td>
-                    <td>dd</td>
+                    <td>{{ getSubTotal(item) }}</td>
                     </tr>
                 <tr>
 
@@ -47,21 +65,17 @@
                         </select>
 
                     </td>
+                
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    @*<td>
-                        <button type="button" v-on:click="plus(item)" class="btn btn-primary" style="margin-bottom:3px;" title="اضافه کردن">+</button>
-                        &nbsp;
-                        <button type="button" v-on:click="minus(item)" class="btn btn-danger" style="margin-bottom:3px;" title="کم کردن">-</button>
-                    </td>*@
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td colspan="6">جمع کل</td>
-                    <td></td>
+                    <td>{{ getTotal()}}</td>
                 </tr>
             </table>
         </div>

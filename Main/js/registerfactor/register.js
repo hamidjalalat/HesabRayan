@@ -7,6 +7,7 @@ var app = new Vue({
 
     el: "#app",
     data: {
+        customer:null,
         listSelectionProduct:[],
         selectedProduct:null,
         listProduct: null,
@@ -31,7 +32,52 @@ var app = new Vue({
             }
 
 
-        }
+        },
+        plus: function (item) {
+            item.count++;
+
+        },
+
+        minus: function (item) {
+
+            if (item.count > 1) {
+
+                item.count--
+
+            }
+            else {
+                const index = this.listSelectionProduct.indexOf(item);
+                if (index > -1) {
+                    this.listSelectionProduct.splice(index, 1);
+                }
+            }
+
+
+        },
+
+        getSubTotal: function (item) {
+            let result =
+                item.count * item.Price
+
+            return result
+        },
+
+        getTotal: function () {
+
+            let total = 0
+
+            for (let index = 0; index < this.listSelectionProduct.length; index++) {
+
+                let currentItem = this.listSelectionProduct[index]
+
+                total +=
+                    this.getSubTotal(currentItem)
+
+            }
+            this.listSelectionProduct.Total = total;
+            return total
+
+        },
 
 
     },
