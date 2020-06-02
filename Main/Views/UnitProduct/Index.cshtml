@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Models.UnitProduct>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_fa-IR.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table table-bordered table-striped table-hover table-sm">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+    </tr>
+}
+
+</table>

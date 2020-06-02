@@ -1,0 +1,50 @@
+﻿@model Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout_fa-IR.cshtml";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="card">
+            <div class="card-header" style="background-color:rgb(76, 208, 53);color:white">
+                <h3 class="panel-title">
+                    افزون  کالا
+                </h3>
+            </div>
+            <div class="card-body">
+                @Html.HjEditor(model => model.Name)
+
+                @Html.HjEditor(model => model.Price)
+
+                @Html.HjEditor(model => model.Weight)
+
+                @Html.HjEditor(model => model.UnitProductId)
+
+
+                <div class='form-group row'>
+                    <div class="control-label col-sm-2">
+
+                    </div>
+                    <div class="col-sm-10">
+                        <input type="submit" value="ذخیره" class="btn btn-primary " />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    
+    </div>
+}
+
+<div>
+    @Html.ActionLink("لیست کالا", "Index")
+</div>
