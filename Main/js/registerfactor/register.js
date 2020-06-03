@@ -14,30 +14,64 @@ var app = new Vue({
     },
     methods: {
       
-        onChange(event) {
+        addProduct :function(e){
+            if (e.keyCode === 13) {
+                let has = true;
+                this.listSelectionProduct.forEach(i => {
 
-            let has = true;
-            this.listSelectionProduct.forEach(i => {
+                    if (i.Id == this.selectedProduct.Id) {
+                        has = false;
+                        i.count++;
+                    }
 
-                if (i.Id == this.selectedProduct.Id ) {
-                    has = false;
-                    i.count++;
+                });
+                if (has) {
+
+                    this.listSelectionProduct.push(this.selectedProduct);
+
                 }
-
-            });
-            if (has) {
-
-                this.listSelectionProduct.push(this.selectedProduct);
-
             }
+        },
 
+        redirectToAction() {
+            if (this.listSelectionProduct.length != 0) {
+                $('#checkfinal').hide();
+                $(`div#loadingModal`).modal({ backdrop: false, keyboard: false, });
+                let parameter = { jsonFactor: JSON.stringify(this.listSelectionProduct), nameCustomer: this.customer };
+                axios.post('/RegisterFactor/GetRegisterFactor', parameter)
+                 .then(response => {
+
+                     if (response.data) {
+                         alert("ok");
+                     }
+                     else {
+                         $(`div#errormodal`).modal();
+                     }
+
+                 })
+         .catch(error => {
+
+             $(`div#errormodal`).modal();
+         })
+         .finally(() => {
+             $('#checkfinal').show();
+             $(`div#loadingModal`).modal(`hide`)
+         })
+            }
+            else {
+                $(`div#messagemodal`).modal();
+            }
 
         },
         plus: function (item) {
             item.count++;
 
         },
+        remove: function (item) {
+            let id = this.listSelectionProduct.indexOf(item);
+            this.listSelectionProduct.splice(id, 1);
 
+        },
         minus: function (item) {
 
             if (item.count > 1) {

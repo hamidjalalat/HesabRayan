@@ -1,4 +1,6 @@
 ﻿using Infrastructure;
+using Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +47,43 @@ namespace HJ_Template_MVC.Controllers
             var result = new { listProduct = listProductViewModel };
 
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public virtual ActionResult GetRegisterFactor(string jsonFactor, string nameCustomer)
+        {
+            var listFactorDetial = JsonConvert.DeserializeObject<List<FactorDtailViewModel>>(jsonFactor);
+            bool status = false;
+            try
+            {
+                Factor oFactor = new Factor();
+
+                oFactor.Date = DateTime.Now;
+                oFactor.NameCustomer = nameCustomer;
+                oFactor.FactorDetails = new List<FactorDetail>();
+
+                foreach (var item in listFactorDetial)
+                {
+                    FactorDetail oFactorDetail = new FactorDetail();
+
+                    oFactorDetail.Name = item.Name;
+                    oFactorDetail.Price = item.Price;
+                    oFactorDetail.Weight = item.Weight;
+                    oFactorDetail.UnitProduct = item.UnitProduct;
+                    oFactorDetail.Id = item.Id;
+                    oFactorDetail.FactorId = oFactor.Id;
+                    oFactorDetail.Count = item.Count;
+                    oFactor.FactorDetails.Add(oFactorDetail);
+                }
+
+                db.Factors.Add(oFactor);
+                db.SaveChanges();
+                status = true;
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
+            return Json(status);
         }
     }
 }

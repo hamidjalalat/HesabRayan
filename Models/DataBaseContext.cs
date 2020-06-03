@@ -32,6 +32,7 @@ namespace Models
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -43,5 +44,9 @@ namespace Models
         public System.Data.Entity.DbSet<Models.UnitProduct> UnitProducts { get; set; }
 
         public System.Data.Entity.DbSet<Models.Product> Products { get; set; }
+
+        public DbSet<Factor> Factors { get; set; }
+
+        public DbSet<FactorDetail> FactorDetails { get; set; }
     }
 }

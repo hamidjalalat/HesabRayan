@@ -65,6 +65,10 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
       <Private>True</Private>
@@ -144,6 +148,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\Yekan.ttf" />
     <Content Include="fonts\YekanWeb-Regular.woff" />
+    <Content Include="js\hjcomponent.js" />
+    <Content Include="js\hjFunction.js" />
     <Content Include="js\registerfactor\register.js" />
     <Content Include="packages.config" />
     <Content Include="scripts\axios.js" />

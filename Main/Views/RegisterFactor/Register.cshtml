@@ -13,6 +13,26 @@
 }
 </style>
 <div id="app" class="container" v-cloak>
+
+    <hj-modal v-bind:message="'مشکلی در سرور رخ داده است'" v-bind:idmodal="'errormodal'"></hj-modal>
+    <hj-modal v-bind:message="'شما هیچ کالاانتخاب نکرده اید'" v-bind:idmodal="'messagemodal'"></hj-modal>
+
+    <div id="loadingModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:rgb(76, 208, 53);color:white">
+                    <h5 class="modal-title">
+                        در حال بررسی
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger">
+                        لطفا چند لحظه منتظر بمانید...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row" style="margin-bottom:10px;margin-top:10px">
         <div class="col-sm-2">
             <label>
@@ -34,7 +54,6 @@
                     <td class="green" colspan="7" style="text-align:center;">ثبت اقلام فاکتور</td>
                 </tr>
                 <tr>
-
                     <th>نام</th>
                     <th>قیمت</th>
                     <th>وزن</th>
@@ -52,20 +71,23 @@
                         <button type="button" v-on:click="plus(item)" class="btn btn-primary" style="margin-bottom:3px;" title="اضافه کردن">+</button>
                         &nbsp;
                         <button type="button" v-on:click="minus(item)" class="btn btn-danger" style="margin-bottom:3px;" title="کم کردن">-</button>
+                        &nbsp;
+                        <button type="button"  v-on:click="remove(item)" class="btn btn-danger" style="margin-bottom:3px;font-size:12px;height:38px;text-align:left" title="حذف">حذف</button>
                     </td>
                     <td>{{item.count}}</td>
                     <td>{{ getSubTotal(item) }}</td>
+             
+
                     </tr>
                 <tr>
 
                     <td>
-                        <select v-model="selectedProduct" @@change="onChange($event)" class="browser-default custom-select ">
+                        <select v-model="selectedProduct" v-on:keypress="addProduct" class="browser-default custom-select ">
                             <option v-bind:value="null">انتخاب کالا</option>
                             <option v-for="item in listProduct" v-bind:value="item">{{ item.Name}}</option>
                         </select>
 
                     </td>
-                
                     <td></td>
                     <td></td>
                     <td></td>
@@ -75,12 +97,19 @@
                 </tr>
                 <tr>
                     <td colspan="6">جمع کل</td>
-                    <td>{{ getTotal()}}</td>
+                    <td>{{ getTotal()|formatNumber}}</td>
                 </tr>
             </table>
         </div>
 
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary  btn-block" id="checkfinal" v-on:click="redirectToAction()">ثبت فاکتور </button>
+
+        </div>
+    </div>
 </div>
 <script src="~/js/hjFunction.js"></script>
+<script src="~/js/hjcomponent.js"></script>
 <script src="~/js/registerfactor/register.js"></script>
