@@ -34,17 +34,24 @@ var app = new Vue({
         },
 
         redirectToAction() {
+            console.log(this.customer);
+            if (this.customer==null) {
+                $(`div#valid`).modal();
+                retrun;
+            }
+            
             if (this.listSelectionProduct.length != 0) {
                 $('#checkfinal').hide();
                 $(`div#loadingModal`).modal({ backdrop: false, keyboard: false, });
                 let parameter = { jsonFactor: JSON.stringify(this.listSelectionProduct), nameCustomer: this.customer };
                 axios.post('/RegisterFactor/GetRegisterFactor', parameter)
                  .then(response => {
-
                      if (response.data) {
-                         alert("ok");
+                         $(`div#success`).modal();
+                         this.listSelectionProduct = [];
                      }
                      else {
+                         
                          $(`div#errormodal`).modal();
                      }
 
@@ -69,6 +76,7 @@ var app = new Vue({
         },
         remove: function (item) {
             let id = this.listSelectionProduct.indexOf(item);
+            item.count = 1;
             this.listSelectionProduct.splice(id, 1);
 
         },

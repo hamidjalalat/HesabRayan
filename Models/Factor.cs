@@ -14,7 +14,7 @@ namespace Models
             Id = Guid.NewGuid();
         }
         public Guid Id { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public string NameCustomer { get; set; }
 
         public virtual List<FactorDetail> FactorDetails { get; set; }

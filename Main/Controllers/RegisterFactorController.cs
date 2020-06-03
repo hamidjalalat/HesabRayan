@@ -57,7 +57,7 @@ namespace HJ_Template_MVC.Controllers
             {
                 Factor oFactor = new Factor();
 
-                oFactor.Date = DateTime.Now;
+                oFactor.Date =  DateTime.Now.ToShamsi();
                 oFactor.NameCustomer = nameCustomer;
                 oFactor.FactorDetails = new List<FactorDetail>();
 
