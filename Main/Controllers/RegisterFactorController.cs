@@ -38,13 +38,13 @@ namespace HJ_Template_MVC.Controllers
                 vm.Id = item.Id;
                 vm.Name = item.Name;
                 vm.Price = item.Price;
-                vm.UnitProduct = MyUnitOfWork.UnitProductRepository.GetById(item.Id).Name;
+                vm.UnitProduct = MyUnitOfWork.UnitProductRepository.GetById(item.UnitProductId).Name;
                 vm.Weight = item.Weight;
                 vm.UnitProductId = item.UnitProductId;
                 listProductViewModel.Add(vm);
 
             }
-            var result = new { listProduct = listProductViewModel };
+            var result = new { listProduct = listProductViewModel.OrderBy(C=>C.Name).ToList() };
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }

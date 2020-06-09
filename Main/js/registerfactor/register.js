@@ -32,7 +32,9 @@ var app = new Vue({
                 }
             }
         },
-
+        newFactor(){
+            location.reload();
+        },
         redirectToAction() {
             console.log(this.customer);
             if (this.customer==null) {
@@ -48,7 +50,7 @@ var app = new Vue({
                  .then(response => {
                      if (response.data) {
                          $(`div#success`).modal();
-                         this.listSelectionProduct = [];
+
                      }
                      else {
                          

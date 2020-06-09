@@ -121,7 +121,19 @@ namespace HJ_Template_MVC.Controllers
             MyUnitOfWork.Save();
             return RedirectToAction("Index");
         }
-
+        public virtual JsonResult CheckProductname(string name)
+        {
+            bool blnResult = true;
+            var oUser = MyUnitOfWork.ProductRepository.Get()
+                .Where(current => current.Name == name.Trim())
+                .FirstOrDefault()
+                ;
+            if (oUser != null)
+            {
+                blnResult = false;
+            }
+            return Json(blnResult, JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

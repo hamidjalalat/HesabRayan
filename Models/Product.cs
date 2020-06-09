@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Models
 {
@@ -14,6 +15,7 @@ namespace Models
 
         }
         [Display(Name ="نام کالا")]
+       
         public string Name { get; set; }
 
         [Display(Name = "قیمت")]

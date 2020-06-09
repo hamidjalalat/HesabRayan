@@ -11,12 +11,24 @@
     background-color:#4cd035;
     color:white
 }
+    .no-border {
+       
+    border: 0;
+    box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+}
+    #classic{
+        width:70px;
+    }
+    .drop{
+        width:100%;
+    }
+ 
 </style>
 <div id="app" class="container" v-cloak>
 
     <hj-modal v-bind:message="'مشکلی در سرور رخ داده است'" v-bind:idmodal="'errormodal'"></hj-modal>
-    <hj-modal v-bind:message="'شما هیچ کالاانتخاب نکرده اید'" v-bind:idmodal="'messagemodal'"></hj-modal>
-    <hj-modal v-bind:message="'عملیات با موفقیت انجام شد'" v-bind:idmodal="'success'"></hj-modal>
+    <hj-modal v-bind:message="'شما هیچ کالاای راانتخاب نکرده اید'" v-bind:idmodal="'messagemodal'"></hj-modal>
+    <hj-modal v-bind:message="'فاکتور با موفقیت ثبت شد'" v-bind:idmodal="'success'"></hj-modal>
     <hj-modal v-bind:message="'وارد کردن نام مشتری الزامی می باشد'" v-bind:idmodal="'valid'"></hj-modal>
 
     <div id="loadingModal" class="modal" tabindex="-1" role="dialog">
@@ -44,24 +56,29 @@
         <div class="col-sm-3">
             <input class="form-control text-box single-line" type="text" name="username" id="username" v-model="customer"  />
         </div>
-
-
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-1">
+            <button class="btn btn-primary  " v-on:click="newFactor()">جدید</button>
+        </div>
     </div>
+    <hr />
+
     <div class="row">
         
         <div class="col-12 table-responsive">
             
-            <table class="table table-bordered table-striped table-hover table-sm">
+            <table class="table table-bordered  table-hover table-sm">
                 <tr>
                     <td class="green" colspan="7" style="text-align:center;">ثبت اقلام فاکتور</td>
                 </tr>
                 <tr>
-                    <th>نام</th>
+                    <th >نام</th>
                     <th>قیمت</th>
                     <th>وزن</th>
                     <th>واحد</th>
-                    <th>عملیات</th>
                     <th>تعداد</th>
+                    <th>عملیات</th>
                     <th>جمع</th>
                 </tr>
                 <tr v-for="item in listSelectionProduct" v-bind:key="item.id">
@@ -69,6 +86,7 @@
                     <td>{{item.Price}}</td>
                     <td>{{item.Weight}}</td>
                     <td>{{item.UnitProduct}}</td>
+                    <td ><input id="classic" class="form-control no-border"  type="number"  name="name" value=" " v-model="item.count" /></td>
                     <td>
                         <button type="button" v-on:click="plus(item)" class="btn btn-primary" style="margin-bottom:3px;" title="اضافه کردن">+</button>
                         &nbsp;
@@ -76,7 +94,6 @@
                         &nbsp;
                         <button type="button"  v-on:click="remove(item)" class="btn btn-danger" style="margin-bottom:3px;font-size:12px;height:38px;text-align:left" title="حذف">حذف</button>
                     </td>
-                    <td>{{item.count}}</td>
                     <td>{{ getSubTotal(item) }}</td>
              
 
@@ -84,7 +101,7 @@
                 <tr>
 
                     <td>
-                        <select v-model="selectedProduct" v-on:keypress="addProduct" class="browser-default custom-select ">
+                        <select v-model="selectedProduct" v-on:keypress="addProduct" class="browser-default custom-select no-border drop ">
                             <option v-bind:value="null">انتخاب کالا</option>
                             <option v-for="item in listProduct" v-bind:value="item">{{ item.Name}}</option>
                         </select>

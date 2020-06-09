@@ -13,7 +13,8 @@ namespace Models
         {
 
         }
-        [Display(Name = "نام واحد کالا")]   
+        [Display(Name = "نام واحد کالا")] 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "وارد کردن نام الزامی می باشد")]
         public string Name { get; set; }
 
     }
